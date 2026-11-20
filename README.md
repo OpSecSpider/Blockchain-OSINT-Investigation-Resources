@@ -1,396 +1,490 @@
 <div align="center">
-     <h1>WEB3, CRIPTOCURRENCIES and NFT resources for OSINT investigations</h1>
+  <h1>WEB3, CRYPTOCURRENCIES and NFT resources for OSINT investigations</h1>
+  <p>A curated collection of explorers, analyzers, APIs, regexes and tools for on-chain OSINT investigations.</p>
+  <p>
+    <img src="https://img.shields.io/badge/chains-12%2B-1f6feb" alt="Chains"/>
+    <img src="https://img.shields.io/badge/updated-November%202026-2ea043" alt="Last update"/>
+    <img src="https://img.shields.io/badge/license-MIT-lightgrey" alt="License: MIT"/>
+    <img src="https://img.shields.io/badge/PRs-welcome-8250df" alt="PRs welcome"/>
+  </p>
 </div>
-
-A collection of resources useful for OSINT Investigations on Cryptocurrencies and WEB3.  
 
 <p align="center"> <img src="https://github.com/user-attachments/assets/160f2000-01ac-4fbd-8e3f-100771b2ae9f" width="1000" alt="Eye"/> </p>
 
-## [](#table-of-contents) Table of contents
-- [OPSEC](#crypto-opsec-methodologies-and-info)
-- [BITCOIN](#-bitcoin---btc)
-    - [Format](#btc-address-regex)
-    - [Explorer](#btc-blockchain-explorers)
-    - [Blockchain Databases and Analyzers](#btc-blockchain-databases-and-analyzers)
-    - [API](#btc-api)
-    - [Other](#btc-other)
-- [ETHEREUM](#-ethereum---eth)
-    - [Format](#eth-address-regex)
-    - [Explorer](#eth-blockchain-explorers)
-    - [Blockchain Databases and Analyzers](#eth-blockchain-databases-and-analyzers)
-    - [Other](#eth-other)
-- [MONERO](#-monero---xmr)
-    - [Format](#xmr-address-regex)
-    - [Explorer](#xmr-blockchain-explorers)
-    - [Blockchain Databases and Analyzers](#xmr-blockchain-databases-and-analyzers)
-- [CARDANO](#-cardano---ada)
-    - [Format](#ada-address-regex)
-    - [Explorer](#ada-blockchain-explorers)
-    - [Blockchain Databases and Analyzers](#ada-blockchain-databases-and-analyzers)
-- [SOLANA](#-solana---sol)
-    - [Format](#sol-address-regex)
-    - [Explorer](#sol-blockchain-explorers)
-    - [Blockchain Databases and Analyzers](#sol-blockchain-databases-and-analyzers)
-    - [Other](#sol-other)
-- [TONCOIN](#-toncoin---ton)
-    - [Format](#ton-address-regex)
-    - [Explorer](#ton-blockchain-explorers)
-    - [Blockchain Databases and Analyzers](#ton-blockchain-databases-and-analyzers)
-    - [Other](#ton-other)
-    - [API](#ton-api)
-- [SMARTCONTRACTS](#smartcontracts)
-- [METAVERSE](#metaverse)
-- [NFT](#nft)
-    - [NFT Databases and Analyzers](#nft-databases-and-analyzers)
-    - [API](#nft-api)
-- [IPFS](#ipfs)
-- [METAVERSE](#metaverse)
-- [DEFI](#defi)
-- [DORK](#dork)
-- [NOTABLE ACCOUNT TO FOLLOW](#notable-accounts-to-follow)
-- [TOOLS](#tools)
+> [!TIP]
+> **Legend:** 💰 paid / enterprise &nbsp;·&nbsp; 🔑 account or wallet login required &nbsp;·&nbsp; ⚠️ OPSEC warning: the service may log or share your queries. Use a clean browser profile, VPN and sock-puppet accounts or wallets when investigating.
 
-### CRYPTO-OPSEC Methodologies and Info 
+## Table of contents
+
+| Chains | Cross-chain & analytics | Web3 & tooling |
+| --- | --- | --- |
+| [🟠 Bitcoin](#bitcoin---btc) | [🌐 Multichain & AML analytics](#multichain--aml-analytics) | [📜 Smart contracts](#smartcontracts) |
+| [🔷 Ethereum & EVM](#ethereum---eth) | [🌉 Bridges & CCTP](#bridges--cctp) | [🏦 DeFi](#defi) |
+| [🔴 Tron](#tron---trx) | [🚨 Sanctions, hacks & phishing](#sanctions-hacks--phishing) | [🖼️ NFT](#nft) |
+| [⚫ Monero](#monero---xmr) | [🏷️ Name services](#name-services) | [📦 IPFS](#ipfs) |
+| [🔵 Cardano](#cardano---ada) | [🛡️ OPSEC](#crypto-opsec-methodologies-and-info) | [🕶️ Metaverse](#metaverse---web3) |
+| [🟣 Solana](#solana---sol) | [🔎 Dorks](#dork) | [🧰 Tools](#tools) |
+| [💎 TON](#toncoin---ton) | [👤 Accounts to follow](#notable-accounts-to-follow) | [🤝 Contributing](#contributing) |
+| [🪙 Other chains](#other-chains) | | |
+
+Each chain section has the same structure: **Address Regex → Explorers → Databases and Analyzers → API → Other**.
+
+## CRYPTO-OPSEC Methodologies and Info 
 | Info / Tool | Description |
 | --- | --- |
-[Slowmist Blockchain Darkforest](https://github.com/slowmist/Blockchain-dark-forest-selfguard-handbook) | Blockchain dark forest selfguard handbook: Master these, master the security of your cryptocurrency.
+| [Slowmist Blockchain Darkforest](https://github.com/slowmist/Blockchain-dark-forest-selfguard-handbook) | Blockchain dark forest selfguard handbook: Master these, master the security of your cryptocurrency. |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## BITCOIN - BTC
 
 ### BTC Address Regex
 | Address regex | Description |
 | --- | --- |
-| `1[a-km-zA-HJ-NP-Z1-9]{25,34}` | Legacy addresses |
-| `3[a-km-zA-HJ-NP-Z1-9]{25,34}` | P2SH address |
-| `bc1[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{39,59}` | Segwit addresses |
-| `bc1p[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{59}` | Taproot addresses |
+| `1[a-km-zA-HJ-NP-Z1-9]{25,33}` | Legacy (P2PKH) addresses, 26-34 characters |
+| `3[a-km-zA-HJ-NP-Z1-9]{33}` | P2SH addresses, 34 characters |
+| `bc1q[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{38}([qpzry9x8gf2tvdw0s3jn54khce6mua7l]{20})?` | Segwit v0 addresses (P2WPKH 42 / P2WSH 62 characters) |
+| `bc1p[qpzry9x8gf2tvdw0s3jn54khce6mua7l]{58}` | Taproot addresses, 62 characters |
 
 ### BTC Blockchain explorers
 | Link | Description |
 | --- | --- |
 | [3xpl.com](https://3xpl.com/bitcoin) | Fastest ad-free universal block explorer |
-| [Blockchain.com](https://www.blockchain.com/explorer/assets/btc) | One of the first and robust explorer, it permits to explor Bitcoin, Ethreum, Bitcoin Cash , other Assets and also NFT  |
-| [Blockchair](https://blockchair.com/bitcoin) | An explorer that supports differents cryptovalutes, Bitcoin, Ethereum, Dogecoin, the search permits to query address, transaction and embedded text inside block |
-| [Crystalblockchain](https://explorer.crystalblockchain.com/) | The public explorer helps to search for adresses, transactions, it also display a comprensive detail about ad address. |
-| [Tokenview](https://tokenview.io/) | Another blockcahin explorer, it supports different tokens and cryptocurrencies, BTC, ETH, XMR ... Search info by addresses and or trnsactions  |
-| [Graphsense](https://graphsense.github.io/)| GraphSense is a cryptoasset analytics platform emphasizing full data sovereignty, algorithmic transparency, and scalability.    |
-| [Coincodex](https://coincodex.com/crypto/bitcoin/historical-data/) | Hystorical price of Bitcoin |
-| [Awebanalysis](https://awebanalysis.com/en/bitcoin-address-validate/) | Validate Bitcoin format |
-| [WalletExplorer](https://www.walletexplorer.com/) | A service which try to retrieve the wallet related to an address [#BacarefullwhatyouOSINTWith](https://www.theblock.co/linked/118223/chainalysis-used-an-ip-scraping-block-explorer-to-aid-law-enforcement-leaked-docs-say)  |
-| [Breadcrumbs.app](https://www.breadcrumbs.app/) | An investigation tool that help to visualize address relation, it's very helpful and it contains information about sanzioned address and assets. It supports BTC, ETH and any ERC20 Token |
-| [TRM](https://www.trmlabs.com/) | TRM Tranasction Monitor and TRM Forensics are two tools that help in dept analysis on Blockchain transactions  | 
-| [Lampyre](https://lampyre.io/) | Like Maltego it supports BTC investigations and correlations. [#BacarefullwhatyouOSINTWith](https://keyfindings.blog/2020/03/23/be-careful-what-you-osint-with/)  |
-| [Bitquery.io](https://www.bitquery.io/) | Full explorer which support, addresses analysis, smartcontracts and assets explorer |
-| [Ciphertrace](https://www.ciphertrace.com/) | Inspect/Armada - Cryptocurrency Risk and Fraud Controls for Financial Institutions/Cryptocurrency Risk and Fraud Controls for Financial Institutions |
-| [Coinfirm](https://www.coinfirm.com/) | industry-leading blockchain analytics, investigations and AML solutions are trusted to best analyse and manage risk.|
-| [Whalealert](https://whale-alert.io/alerts) | An alerting system, it's helpful to get alerts when wallets with a big amount of funds are making transactions |
-| [BTCparser](https://btcparser.com/) | A project to get information about differents kind of wallets, it monitors old wallets or wallets related to the Satoshi era |
-| [Bitref](https://bitref.com) | A simple, address explorer. It display amount of Bitcoin held on given addresses |
-| [Arkhamintelligence](https://platform.arkhamintelligence.com) | A tool that permits network mapping different Networks currently it supports BTC / ETH |
-| [Metasleuth](https://metasleuth.io/) | BTC Address explorer and wallet monitor
-| [SpyderLab](https://www.spyderlab.org/) | Spyderlab.org offers blockchain forensics, crypto AML solutions, and OSINT tools for comprehensive investigative analysis.
+| [Blockchain.com](https://www.blockchain.com/explorer/assets/btc) | One of the first and most robust explorers, it lets you explore Bitcoin, Ethereum, Bitcoin Cash, other assets and also NFTs |
+| [Blockchair](https://blockchair.com/bitcoin) | An explorer that supports different cryptocurrencies (Bitcoin, Ethereum, Dogecoin...), the search lets you query addresses, transactions and text embedded inside blocks |
+| [Crystal Lite](https://lite.crystalintelligence.com/) | The public explorer of Crystal Intelligence (formerly Crystal Blockchain), search addresses and transactions and get a comprehensive overview of an address |
+| [Tokenview](https://tokenview.io/) | Another blockchain explorer, it supports different tokens and cryptocurrencies, BTC, ETH, XMR... Search info by addresses and/or transactions |
+| [GraphSense](https://graphsense.org/) | GraphSense is a cryptoasset analytics platform emphasizing full data sovereignty, algorithmic transparency, and scalability |
+| [Coincodex](https://coincodex.com/crypto/bitcoin/historical-data/) | Historical price of Bitcoin |
+| [Awebanalysis](https://awebanalysis.com/en/bitcoin-address-validate/) | Validate Bitcoin address format |
+| [WalletExplorer](https://www.walletexplorer.com/) ⚠️ | A service which tries to retrieve the wallet related to an address [#BeCarefulWhatYouOSINTWith](https://www.theblock.co/linked/118223/chainalysis-used-an-ip-scraping-block-explorer-to-aid-law-enforcement-leaked-docs-say) |
+| [Breadcrumbs.app](https://www.breadcrumbs.app/) 🔑 | An investigation tool that helps to visualize address relations, it also contains information about sanctioned addresses and assets. It supports BTC, ETH and any ERC-20 token |
+| [TRM](https://www.trmlabs.com/) 💰 | TRM Transaction Monitoring and TRM Forensics are two tools that help with in-depth analysis of blockchain transactions |
+| [Lampyre](https://lampyre.io/) ⚠️ | Like Maltego, it supports BTC investigations and correlations. [#BeCarefulWhatYouOSINTWith](https://web.archive.org/web/2020/https://keyfindings.blog/2020/03/23/be-careful-what-you-osint-with/) |
+| [Bitquery.io](https://www.bitquery.io/) | Full explorer which supports address analysis, smart contracts and assets |
+| [Whalealert](https://whale-alert.io/) | An alerting system, helpful to get alerts when wallets with a big amount of funds make transactions |
+| [BTCparser](https://btcparser.com/) | A project to get information about different kinds of wallets, it monitors old wallets or wallets related to the Satoshi era |
+| [Bitref](https://bitref.com) | A simple address explorer. It displays the amount of Bitcoin held on given addresses |
+| [Arkham Intelligence](https://platform.arkhamintelligence.com) 🔑 | Entity labelling and network mapping across different chains (BTC, ETH, TRON, SOL and more) |
+| [Metasleuth](https://metasleuth.io/) | BTC address explorer and wallet monitor |
+| [SpyderLab](https://www.spyderlab.org/) | Spyderlab.org offers blockchain forensics, crypto AML solutions, and OSINT tools for comprehensive investigative analysis |
+| [Blockstream.info](https://blockstream.info/) | Lightweight, no-JS-friendly Bitcoin and Liquid explorer by Blockstream |
+| [Mempool Space](https://mempool.space/) | A graphical dashboard to analyze the history of block congestion, fees, Lightning Network and mining activities |
 
 ### BTC Blockchain Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| [CryptoBlacklist](https://www.cryptoblacklist.io/en/bitcoin-blacklist/) | An addresses blacklist, it contains simple reports about the type of activities the address is related to |
-| [Bitcoinwho'swho](https://www.bitcoinwhoswho.com/) | An address lookup service to indify report related to a malicious BTC addresses. |
-| [Bitcoinabuse](https://www.bitcoinabuse.com/) | Tracking bitcoin addresses used by ransomware, blackmailers, fraudsters, etc. |
-| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, SOL and ADA |
-| [Scamsearch](https://www.scamsearch.io/) | It's a global scam database. Search by Profile Picture, Email, Username, Pseudo Name, Phone Number, crypto address or website. |
-| [Scamalert](https://scam-alert.io/) | It offers a search engine for scam and crypto-address related frauds  |
-| [Cryptoscamdb](https://cryptoscamdb.org/scams) | A scam database which contains information about sites scam and related address  |
-| [Ransomwhere](https://ransomwhe.re/) | Bitcoin address used in ransomware activities, the databse is in raw format and it's integrated in chainabuese service |
-| [Know Your Coin Privacy](https://kycp.org/) | Try to guess relation from BTC adddress using this techiques  Boltzmann analysis, Entity analysis, Address reuse, Input/output merges |
-| [SPLcenter Addresslist](https://www.splcenter.org/cryptocurrency-report) | A spreadsheet containing information about address used by extremists and far right communities |
-| [Bad Bitcoin](https://badbitcoin.org/) | A database containing info and details about Bitcoin Fraud since 2014 |
-| [Vivigle](https://vivigle.com/) | A global cryptoRatings and Analytics Platform |
+| [Bitcoinwho'swho](https://www.bitcoinwhoswho.com/) | An address lookup service to identify reports related to malicious BTC addresses |
+| [Bitcoinabuse](https://www.bitcoinabuse.com/) | Tracking bitcoin addresses used by ransomware, blackmailers, fraudsters, etc. (the database was merged into Chainabuse) |
+| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, TRON, SOL, ADA and more |
+| [Scamsearch](https://www.scamsearch.io/) | A global scam database. Search by profile picture, email, username, pseudonym, phone number, crypto address or website |
+| [Scamalert](https://scam-alert.io/) | A search engine for scams and fraud-related crypto addresses |
+| [Cryptoscamdb](https://cryptoscamdb.org/scams) | A scam database which contains information about scam sites and related addresses |
+| [Ransomwhere](https://ransomwhe.re/) | Bitcoin addresses used in ransomware activities, the database is in raw format and it's integrated into the Chainabuse service |
+| [SPLcenter Addresslist](https://www.splcenter.org/cryptocurrency-report) | A spreadsheet containing information about addresses used by extremists and far-right communities |
 
 ### BTC API
 | Req | Description |  
 | --- | --- |  
-| `https://3xpl.com/bitcoin/address/xxx` | Request for the status of the address using 3xpl API |
-| `https://blockchair.com/bitcoin/address/xxx` | Request for the status of the address using Blockchair API |  
-| `https://blockchair.com/bitcoin-cash/transaction/xxx` | Request for the detail of a give Transaction |  
-| `https://www.bitcoinabuse.com/reports/` | Looking for any entry related to a given address on the Bitcoinabuse database |  
-| `http://codacoin.com/api/public.php?request=validate&address=xxx` | An api for get a validation of a given BTC address |  
-| `https://blockchain.info/q/24hrprice` | Retrieving the price of the last 24h |  
-| `https://blockchain.info/q/getreceivedbyaddress/xxx` | Retrieving the amount received on a given BTC address  |  
-| `https://blockchain.info/q/getsentbyaddress/xxx` | Retrieving information of what was sent by a given address |  
-| `https://blockchain.info/q/addressbalance/xxx` | Retrieving the balance for a given address |  
-| `https://chain.api.btc.com/v3/address/xxx` | Retrieving information about a given address |  
-| `https://blockchain.info/q/addressfirstseen/xxx` | It retrieve the first seen date of a given address |  
+| `https://3xpl.com/bitcoin/address/xxx` | Request the status of an address using 3xpl |
+| `https://blockchair.com/bitcoin/address/xxx` | Request the status of an address using Blockchair |  
+| `https://blockchair.com/bitcoin/transaction/xxx` | Request the details of a given transaction |  
+| `https://mempool.space/api/address/xxx/txs` | Retrieve the transaction history of a given address (mempool.space REST API) |
+| `https://blockchain.info/q/24hrprice` | Retrieve the price of the last 24h |  
+| `https://blockchain.info/q/getreceivedbyaddress/xxx` | Retrieve the amount received by a given BTC address |  
+| `https://blockchain.info/q/getsentbyaddress/xxx` | Retrieve the amount sent by a given address |  
+| `https://blockchain.info/q/addressbalance/xxx` | Retrieve the balance of a given address |  
+| `https://blockchain.info/q/addressfirstseen/xxx` | Retrieve the first seen date of a given address |  
 
 ### BTC Other
 | Link | Description |
 | --- | --- |
-| [CriminalIP](https://www.criminalip.io/login?h=/asset/search?query=%22Bitcoin%22%20port:%208333) | It'a a infrstructure scanner. It scans ip and services, there is a section related to miner services exposed online |
-| [Intelx.io](https://intelx.io/) | It indexes nformation retrieved from both closed and open source. It also indexs IP, email, BTC addresses and other kind of assets |
-| [Antianalysis](https://antinalysis.org/example) | Service is maintened and hosted by activist, it support machine learning to analyze information about an address and its related transactions |
-| [Antianalysis (DARK)](http://pdcdvggsz5vhzbtxqn2rh27qovzga4pnrygya4ossewu64dqh2tvhsyd.onion/about) | Service is maintened and hosted by activist, it support machine learning to analyze information about an address and its related transactions | 
-| [Cryptocurrencyalerting](https://cryptocurrencyalerting.com/wallet-watch.html) | Getting alerts about transaction related to a given address |
-| [Localbitcoin](https://localbitcoins.com/) | Useful to check nicknames and details that could be related to Bitcoins adopters
-| [Aware Online](https://www.aware-online.com/en/osint-tools/cryptocurrency-search-tool/)| Different tools to conduct Osint investigation on given BTC addresses |
-| [GraphSense Maltego Transform](https://github.com/INTERPOL-Innovation-Centre/GraphSense-Maltego-transform) | A Maltego transform which leverage the power of GraphSense for Crypto investigations |
-| [Mempool Space](https://mempool.space/it/) | A graphical dashboard to analyze history fo block congestion, fee, lighting networks and mining activities 
-| [Paxful](https://paxful.com/it/user/XXX) | An exchange that, starting from a given nickname, let you explore users and info related to them.
+| [CriminalIP](https://www.criminalip.io/asset/search?query=%22Bitcoin%22%20port:%208333) | An infrastructure scanner. It scans IPs and services, there is a section related to exposed node and miner services |
+| [Intelx.io](https://intelx.io/) 🔑 | It indexes information retrieved from both closed and open sources, including IPs, emails, BTC addresses and other kinds of assets |
+| [Cryptocurrencyalerting](https://cryptocurrencyalerting.com/wallet-watch.html) | Get alerts about transactions related to a given address |
+| [Aware Online](https://www.aware-online.com/en/osint-tools/cryptocurrency-search-tool/) | Different tools to conduct OSINT investigations on given BTC addresses |
+| [GraphSense Maltego Transform](https://github.com/INTERPOL-Innovation-Centre/GraphSense-Maltego-transform) | A Maltego transform which leverages GraphSense for crypto investigations |
+| [Paxful](https://paxful.com/user/XXX) | A P2P exchange that, starting from a given nickname, lets you explore users and info related to them |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## ETHEREUM - ETH
 
 ### ETH Address Regex
 | Address regex | Description |
 | --- | --- |
-| `0x[0-9A-Fa-f]{40}` |  All Ethereum addresses have a length of 40 hexadecimal characters and begin with “0x” |
+| `0x[0-9A-Fa-f]{40}` | All Ethereum (and EVM) addresses have a length of 40 hexadecimal characters and begin with "0x" |
 
 ### ETH Blockchain explorers
 | Link | Description |
 | --- | --- |
-| [3xpl.com](https://3xpl.com/ethereum) | Fastest ad-free universal block explorer. |
-| [Blockchain.com](https://www.blockchain.com/explorer/assets/eth) | One of the first and robust explorer, it permits to explor Bitcoin, Ethreum, Bitcoin Cash , other assets and also NFT  |
-| [Etherscan](https://etherscan.io/) | The most reliable and complete explorer for Ethereum ecosystem. It help to search Adressess, token , nft, smartcontracts and other also ens domains |
-| [Blockchair](https://blockchair.com/bitcoin) | An explorer that supports differents cryptovalutes, Bitcoin, Ethereum, Dogecoin, the search permits to query address, transaction and embedded text inside block |
-| [Tokenview](https://tokenview.io/) | Another blockcahin explorer, it supports different tokens and cryptocurrencies, BTC, ETH, XMR ... Search info by addresses and or trnsactions  |
-| [Blockscout](https://blockscout.com/eth/mainnet/) | It covers all about ethereum, from transactions and block information, token values to sidechains and private chains 
-| [Ethective](https://ethtective.com/)| could be a great help for our forum investigators because has a very interesting way to visualize Ethereum network, that makes exploring transfers much more interactive.    |
-| [Graphsense](https://graphsense.github.io/)| GraphSense is a cryptoasset analytics platform emphasizing full data sovereignty, algorithmic transparency, and scalability.    |
-| [BitQuery](https://explorer.bitquery.io/bitcoin?theme=dark) | A Blockchain explorer which supports different kind of assetts. It supports BTC, ETH, DOGE, ADA etc |
-| [Ethplorer](https://ethplorer.io/) | Track address portfolios for any Ethereum address with comprehensive balance charts and transactions; |
-| [ENS Domains](https://app.ens.domains/) | An ens domain explore, mainly used to purchase that kind of assets, it also help to find end domains and related information |
-| [Breadcrumbs.app](https://www.breadcrumbs.app/) | An investigation tool that help to visualize address relation, it's very helpful and it contains information about sanzioned address and assets. It supports BTC, ETH and any ERC20 Token |
-| [Arkhamintelligence](https://platform.arkhamintelligence.com) | A tool that permits network mapping different Networks currently it supports BTC / ETH |
-| [Watchers.pro](https://watchers.pro) | [Warning!!! Create a sock wallet, it needs a Metamask extension to access it] A tool that provides a dashboard for clustering and inspecting DEFI and altcoin related entities 
-| [Metasleuth](https://metasleuth.io/) | ETH Address explorer and wallet monitor
-| [TrackEnn](https://github.com/kennbroorg/trackenn) | Traceability project in blockchain. Ethereum for now. Transactions, internals, ERC-20 transfers, contracts, internal tagging, labeling, etc
-| [Ward Graph](https://wardgraph.com/) |  Nice graph explorer for ETH blockchain. [The Offical Repo](https://github.com/WardAnalytics/WardGraph)
-| [Socketscan](https://www.socketscan.io/) | EVM bridge explorer
+| [3xpl.com](https://3xpl.com/ethereum) | Fastest ad-free universal block explorer |
+| [Blockchain.com](https://www.blockchain.com/explorer/assets/eth) | One of the first and most robust explorers, it lets you explore Bitcoin, Ethereum, Bitcoin Cash, other assets and also NFTs |
+| [Etherscan](https://etherscan.io/) | The most reliable and complete explorer for the Ethereum ecosystem. It helps to search addresses, tokens, NFTs, smart contracts and also ENS domains |
+| [Blockchair](https://blockchair.com/ethereum) | An explorer that supports different cryptocurrencies (Bitcoin, Ethereum, Dogecoin...), the search lets you query addresses, transactions and text embedded inside blocks |
+| [Tokenview](https://tokenview.io/) | Another blockchain explorer, it supports different tokens and cryptocurrencies, BTC, ETH, XMR... Search info by addresses and/or transactions |
+| [Blockscout](https://eth.blockscout.com/) | Open-source explorer, it covers transactions, blocks, token values, sidechains and many other EVM chains |
+| [Ethtective](https://ethtective.com/) | Visualizes the Ethereum network in an interactive way, which makes exploring transfers much easier |
+| [GraphSense](https://graphsense.org/) | GraphSense is a cryptoasset analytics platform emphasizing full data sovereignty, algorithmic transparency, and scalability |
+| [BitQuery](https://explorer.bitquery.io/ethereum) | A blockchain explorer which supports different kinds of assets. It supports BTC, ETH, DOGE, ADA etc. |
+| [Ethplorer](https://ethplorer.io/) | Track portfolios of any Ethereum address with comprehensive balance charts and transactions |
+| [ENS Domains](https://app.ens.domains/) | An ENS domain explorer, mainly used to purchase this kind of asset, it also helps to find ENS domains and related information |
+| [Breadcrumbs.app](https://www.breadcrumbs.app/) 🔑 | An investigation tool that helps to visualize address relations, it also contains information about sanctioned addresses and assets. It supports BTC, ETH and any ERC-20 token |
+| [Arkham Intelligence](https://platform.arkhamintelligence.com) 🔑 | Entity labelling and network mapping across different chains (BTC, ETH, TRON, SOL and more) |
+| [Watchers.pro](https://watchers.pro) 🔑⚠️ | Needs a MetaMask login: create a sock wallet first. A tool that provides a dashboard for clustering and inspecting DeFi and altcoin related entities |
+| [Metasleuth](https://metasleuth.io/) | ETH address explorer and wallet monitor |
+| [TrackEnn](https://github.com/kennbroorg/trackenn) | Traceability project in blockchain. Ethereum for now. Transactions, internals, ERC-20 transfers, contracts, internal tagging, labeling, etc. |
+| [Ward Graph](https://github.com/WardAnalytics/WardGraph) | Open-source graph explorer for the ETH blockchain (the hosted wardgraph.com instance is offline) |
+| [Socketscan](https://www.socketscan.io/) | EVM bridge explorer |
+
+### EVM chains explorers
+Funds rarely stay on Ethereum mainnet. The same `0x` address can be checked on every EVM chain.
+
+| Link | Chain |
+| --- | --- |
+| [BscScan](https://bscscan.com/) | BNB Smart Chain |
+| [PolygonScan](https://polygonscan.com/) | Polygon PoS |
+| [Arbiscan](https://arbiscan.io/) | Arbitrum One |
+| [Basescan](https://basescan.org/) | Base |
+| [Optimism Etherscan](https://optimistic.etherscan.io/) | OP Mainnet |
+| [Snowtrace](https://snowtrace.io/) | Avalanche C-Chain |
+| [Blockscout](https://eth.blockscout.com/) | Open-source explorer with instances for many other EVM chains and L2s |
 
 ### ETH Blockchain Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| [CryptoBlacklist](https://www.cryptoblacklist.io/en/ethereum-blacklist/) | An addresses blacklist, it contains simple reports about the type of activities the address is related to. |
-| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, SOL and ADA |
-| [Scamsearch](https://www.scamsearch.io/) | It's a global scam database. Search by Profile Picture, Email, Username, Pseudo Name, Phone Number, crypto address or website. |
-| [Cryptoscamdb](https://cryptoscamdb.org/scams) | A scam database which contains information about sites scam and related address  |
-| [Cryptoscam](https://cryptscam.com/) | Another database containing information about scammers, it supports Email/Address search
-| [SPLcenter Addresslist](https://www.splcenter.org/cryptocurrency-report) | A spreadsheet containing information about address used by extremists and far right communities |
-| [Vivigle](https://vivigle.com/) | A global cryptoRatings and Analytics Platform |
-| [Walletlabels](https://www.walletlabels.xyz/) | Search engine based on a collection of more than 7.5M ETH labeled addresses | 
-| [Dune](https://dune.com/browse/dashboards) | A community driven dashboards collection, useful for exploring ETH, TOKENS and NFT | 
+| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, TRON, SOL, ADA and more |
+| [Scamsearch](https://www.scamsearch.io/) | A global scam database. Search by profile picture, email, username, pseudonym, phone number, crypto address or website |
+| [Cryptoscamdb](https://cryptoscamdb.org/scams) | A scam database which contains information about scam sites and related addresses |
+| [SPLcenter Addresslist](https://www.splcenter.org/cryptocurrency-report) | A spreadsheet containing information about addresses used by extremists and far-right communities |
+| [Walletlabels](https://www.walletlabels.xyz/) | Search engine based on a collection of more than 7.5M labeled ETH addresses | 
+| [Dune](https://dune.com/browse/dashboards) 🔑 | A community-driven dashboards collection, useful for exploring ETH, tokens and NFTs | 
 
 ### ETH Other
 | Link | Description |
 | --- | --- |
-| [Chat Blockscan](https://chat.blockscan.com/index) | A chat based on Ethereum blockchain, useful to reach an ens domain or address owner |
-| [CriminalIP](https://www.criminalip.io/login?h=/asset/search?query=%22Ethereum%22%20port:%208545)|  It'a a infrstructure scanner. It scans ip and services, there is a section related to miner services exposed online |
-| [Naddison36](https://github.com/naddison36/tx2uml) | Ethereum transaction to UML sequence diagram generator |
-| [Cryptocurrencyalerting](https://cryptocurrencyalerting.com/wallet-watch.html) | Getting alerts about transaction related to a given address |
-| [Aware Online](https://www.aware-online.com/en/osint-tools/cryptocurrency-search-tool/)| Different tools to conduct Osint investigation on given ETH addresses |
-| [GraphSense Maltego Transform](https://github.com/INTERPOL-Innovation-Centre/GraphSense-Maltego-transform) | A Maltego transform which leverage the power of GraphSense for Crypto investigations |
-| [Etherscan Transforms for Maltego](https://www.maltego.com/transform-hub/etherscan/) | The official Etherscan transform for Maltego
-| [Demixing Tornado cash bot](https://flipsidecrypto.xyz/AMLBot/demixin-eth-for-tornadocash-JCcIiS) | Tool for demixing transaction made using Tornado cash (updated weekly)
-| [Paxful](https://paxful.com/it/user/XXX) | An exchange that, starting from a given nickname, let you explore users and info related to them.
-| [Onchain.industries](https://www.onchain.industries/) | A tool for identifying possible related addressed registered on different blockchain platform, it supports different modules for L1 and L2 blockchains
-| [Cielo](https://app.cielo.finance/) | A tool for tracking and monitoring EVM wallets
+| [Chat Blockscan](https://chat.blockscan.com/index) | A chat based on the Ethereum blockchain, useful to reach an ENS domain or address owner |
+| [CriminalIP](https://www.criminalip.io/asset/search?query=%22Ethereum%22%20port:%208545) | An infrastructure scanner. It scans IPs and services, there is a section related to exposed node and miner services |
+| [tx2uml](https://github.com/naddison36/tx2uml) | Ethereum transaction to UML sequence diagram generator |
+| [Cryptocurrencyalerting](https://cryptocurrencyalerting.com/wallet-watch.html) | Get alerts about transactions related to a given address |
+| [Aware Online](https://www.aware-online.com/en/osint-tools/cryptocurrency-search-tool/) | Different tools to conduct OSINT investigations on given ETH addresses |
+| [GraphSense Maltego Transform](https://github.com/INTERPOL-Innovation-Centre/GraphSense-Maltego-transform) | A Maltego transform which leverages GraphSense for crypto investigations |
+| [Etherscan Transforms for Maltego](https://www.maltego.com/transform-hub/etherscan/) | The official Etherscan transform for Maltego |
+| [Demixing Tornado cash bot](https://flipsidecrypto.xyz/AMLBot/demixin-eth-for-tornadocash-JCcIiS) | Tool for demixing transactions made using Tornado Cash (updated weekly) |
+| [Paxful](https://paxful.com/user/XXX) | A P2P exchange that, starting from a given nickname, lets you explore users and info related to them |
+| [Cielo](https://app.cielo.finance/) | A tool for tracking and monitoring EVM wallets |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## TRON - TRX
+
+### TRX Address Regex
+| Address regex | Description |
+| --- | --- |
+| `T[1-9A-HJ-NP-Za-km-z]{33}` | Base58Check address, 34 characters starting with "T" |
+| `41[0-9a-fA-F]{40}` | Hex address as returned by node APIs (the "41" prefix replaces EVM "0x") |
+
+### TRX Blockchain explorers
+| Link | Description |
+| --- | --- |
+| [Tronscan](https://tronscan.org/) | The main TRON explorer: accounts, TRX/TRC-20 transfers, contracts, labels and USDT activity |
+| [MistTrack](https://misttrack.io/) 🔑 | SlowMist AML platform: address risk score, labels and fund-flow graphs, very strong on TRON / USDT |
+| [OKLink](https://www.oklink.com/tron) | Multichain explorer with address labels and TRC-20 token transfers |
+| [3xpl.com](https://3xpl.com/tron) | Fastest ad-free universal block explorer |
+| [Arkham Intelligence](https://platform.arkhamintelligence.com) 🔑 | Entity labelling and network mapping, supports TRON |
+| [Chainabuse](https://www.chainabuse.com/) | Scam and hack reports, supports TRON addresses |
+
+### TRX API
+| Req | Description |
+| --- | --- |
+| `https://api.trongrid.io/v1/accounts/xxx` | Account info (balances, permissions, creation time) via TronGrid |
+| `https://api.trongrid.io/v1/accounts/xxx/transactions?limit=200` | TRX transactions of a given address (paginate with `fingerprint`) |
+| `https://api.trongrid.io/v1/accounts/xxx/transactions/trc20?limit=200` | TRC-20 transfers (USDT etc.) of a given address |
+| [TronGrid docs](https://developers.tron.network/reference/get-account-info-by-address) | Full API reference |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## MONERO - XMR
 
 ### XMR Address Regex
 | Address regex | Description |
 | --- | --- |
-| <code>[48][1-9A-Za-z]{94}</code> | A raw Monero address is a set of 95 characters starting with a '4' or an '8 |
+| `[48][1-9A-HJ-NP-Za-km-z]{94}` | A standard Monero address is a 95-character Base58 string starting with "4" (main) or "8" (subaddress) |
+| `4[1-9A-HJ-NP-Za-km-z]{105}` | Integrated address (address + payment ID), 106 characters |
 
 ### XMR Blockchain Explorers
 | Link | Description |
 | --- | --- |
-| [Blockchair](https://blockchair.com/monero) | Help to inspect transactiosn and related hashes. |
+| [Blockchair](https://blockchair.com/monero) | Helps to inspect transactions and related hashes |
+| [xmrchain.net](https://xmrchain.net/) | Open-source Onion Monero Blockchain Explorer: blocks, transactions, key images, decoding outputs with a view key |
+| [Explore Monero](https://exploremonero.com/) | Monero explorer with transaction and ring member details |
 
 ### XMR Blockchain Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| ~~[Antianalysis](https://antinalysis.org/example)~~ | ~~Service is maintened and hosted by activist, it support machine learning to analyze information about an address and its related transactions~~ [#BacarefullwhatyouOSINTWith](https://www.justice.gov/opa/pr/incognito-market-owner-arrested-operating-one-largest-illegal-narcotics-marketplaces) |
-| ~~[Antianalysis (DARK)](http://pdcdvggsz5vhzbtxqn2rh27qovzga4pnrygya4ossewu64dqh2tvhsyd.onion/about)~~ | ~~Service is maintened and hosted by activist, it support machine learning to analyze information about an address and its related transactions~~ [#BacarefullwhatyouOSINTWith](https://www.justice.gov/opa/pr/incognito-market-owner-arrested-operating-one-largest-illegal-narcotics-marketplaces) | 
+| ~~[Antinalysis](https://antinalysis.org/example)~~ | ~~Service maintained and hosted by activists, it uses machine learning to analyze information about an address and its related transactions~~ Offline. [#BeCarefulWhatYouOSINTWith](https://www.justice.gov/opa/pr/incognito-market-owner-arrested-operating-one-largest-illegal-narcotics-marketplaces) |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## CARDANO - ADA
 
 ### ADA Address Regex
 | Address regex | Description |
 | --- | --- |
-| `Ae2[1-9A-HJ-NP-Za-km-z]+` | Legacy address ( Byron ) - Icarus-style |
-| `DdzFF[1-9A-HJ-NP-Za-km-z]+` | Legacy address ( Byron ) - Daedalus-style |
-| `addr1[a-z0-9]+` | Shelley address  |
-| `stake1[a-z0-9]+`  | Shelley address used in stacking pool |
+| `Ae2[1-9A-HJ-NP-Za-km-z]+` | Legacy address (Byron) - Icarus-style |
+| `DdzFF[1-9A-HJ-NP-Za-km-z]+` | Legacy address (Byron) - Daedalus-style |
+| `addr1[02-9ac-hj-np-z]+` | Shelley address |
+| `stake1[02-9ac-hj-np-z]+` | Shelley stake (reward) address used for staking |
 
 ### ADA Blockchain explorers
 | Link | Description |
 | --- | --- |
-| [Blockchain.com](https://www.blockchain.com/explorer/assets/ada) | One of the first and robust explorer, it permits to explor Bitcoin, Ethreum, Bitcoin Cash , other Assets and also NFT |
-| [Cardano explorer](https://explorer.cardano.org/en)| The official scanner for Cardano transactions, it help to analyze addresses, transactions for each epoch |
-| [Blockchair](https://blockchair.com/cardano) | An explorer that supports differents cryptovalutes, Bitcoin, Ethereum, Dogecoin, the search permits to query address, transaction and embedded text inside block.  |
-| [Adastat](https://adastat.net/)| An explorer related to the whole Cardano ecosystem, it can inspect Addresses, Block, Trnsactions Epoch   |
-| [Adapool](https://adapools.org/) | An Stacking pool explorer, it helps to browse stacking pool and the currently related activities  |
-| [BitQuery](https://www.bitquery.io/) | Full explorer which support, addresses analysis, smartcontracts and assets explorer |
+| [Blockchain.com](https://www.blockchain.com/explorer/assets/ada) | One of the first and most robust explorers, it lets you explore Bitcoin, Ethereum, Bitcoin Cash, other assets and also NFTs |
+| [Cardano explorer](https://explorer.cardano.org/en) | The official explorer for Cardano, it helps to analyze addresses and transactions for each epoch |
+| [Blockchair](https://blockchair.com/cardano) | An explorer that supports different cryptocurrencies (Bitcoin, Ethereum, Dogecoin...), the search lets you query addresses, transactions and text embedded inside blocks |
+| [Adastat](https://adastat.net/) | An explorer for the whole Cardano ecosystem, it can inspect addresses, blocks, transactions and epochs |
+| [Cexplorer](https://cexplorer.io/pool) | Cardano explorer (formerly ADApools), browse stake pools and their current activities |
+| [BitQuery](https://www.bitquery.io/) | Full explorer which supports address analysis, smart contracts and assets |
 
 ### ADA Blockchain Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, SOL and ADA |
+| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, TRON, SOL, ADA and more |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## SOLANA - SOL
 
 ### SOL Address Regex
 | Address regex | Description |
 | --- | --- |
-| `[1-9A-HJ-NP-Za-km-z]{32,44}` | A Solana address's length varies from 32 to 44 characters. |
+| `[1-9A-HJ-NP-Za-km-z]{32,44}` | A Solana address is a Base58 string of 32 to 44 characters |
 
 ### SOL Blockchain explorers
 | Link | Description |
 | --- | --- |
-| [Solana Explorer](https://explorer.solana.com/) | The official scanner for Solana transactions, it help to analyze addresses, transactions, tokens    |
-| [Blockchair](https://blockchair.com/solana) |  An explorer that supports differents cryptovalutes, Bitcoin, Ethereum, Dogecoin, the search permits to query address, transaction and embedded text inside block.   |
-| [Solscan.io](https://solscan.io/) | A Solana scanner which support Address, transaction, token and NFT. Solscand was acquired by Etherscan 
+| [Solana Explorer](https://explorer.solana.com/) | The official explorer for Solana, it helps to analyze addresses, transactions and tokens |
+| [Blockchair](https://blockchair.com/solana) | An explorer that supports different cryptocurrencies (Bitcoin, Ethereum, Dogecoin...), the search lets you query addresses, transactions and text embedded inside blocks |
+| [SolanaFM](https://solana.fm/) | Solana explorer with human-readable transaction decoding and labels |
+| [Solscan.io](https://solscan.io/) | A Solana explorer which supports addresses, transactions, tokens and NFTs. Solscan was acquired by Etherscan |
 
 ### SOL Blockchain Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, SOL and ADA |
+| [Chainabuse](https://www.chainabuse.com/) | Report a cryptocurrency hack or scam across multiple blockchains and search addresses and domains to see if they are connected to any fraudulent activity. It supports BTC, ETH, TRON, SOL, ADA and more |
 
-### SOL Other
-| Link | Description |
-| --- | --- |
-| [Onchain.industries](https://www.onchain.industries/) | A tool for identifying possible related addressed registered on different blockchain platform, it supports different modules for L1 and L2 blockchains
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## TONCOIN - TON
 
 ### TON Address Regex
 | Address regex | Description |
 | --- | --- |
-| `0:[a-z0-9]{64}` | The raw address, it is an hexadecimal format  
-| `(E\|U)Q[a-zA-Z0-9\-\_]{46}` | Friendly name, based on a custom hash algorithm, ref: crc16 custom, some insight on different kind of [Wallets](https://docs.ton.org/participate/wallets/contracts).
-| `\w\s\w\s\w` | It also supports generated nickname like `Graceful Tan Takin` <_<
+| `-?[0-9]:[a-fA-F0-9]{64}` | The raw address: workchain id and a 64-character hex account id |
+| `[EUkf0]Q[A-Za-z0-9_-]{46}` | User-friendly address (base64url with crc16 checksum): `EQ` bounceable, `UQ` non-bounceable, `kQ`/`0Q` testnet. Some insight on different kinds of [wallets](https://docs.ton.org/participate/wallets/contracts) |
+| `\w+ \w+ \w+` | Some explorers also show generated nicknames like `Graceful Tan Takin` |
 
 ### TON Blockchain explorers
 | Link | Description |
 | --- | --- |
 | [3xpl.com](https://3xpl.com/ton) | Fastest ad-free universal block explorer |
-| [Tonscan](https://tonscan.org/)  | An address lookup service, it helps to find details about a given address |
-| [Ton.sh](https://ton.sh) | An address lookup service, it helps to find details about a given address, it support API   |
-| [Tonmoon](https://tonmoon.org/explorer/)| Help to inspect an address, it support canonical address and nickname also |
-| [Youton](https://youton.org/)| Another Address explorer   |
-| [Toncoin](https://explorer.toncoin.org/) | An more technical esplorer, it helps to query the TON network using different keyfields, workchain ,shard and so on |
-| [TonAPI](https://tonapi.io/swagger-ui) | Is a platfor and API useful for inspect TON address and any related assets, it supports Number and also NFT  |
-| [Ton.page](https://ton.page/) | Another Explorer, fast and easy to use
-| [Ton.cx](https://ton.cx/) | A raw and in depht analysis tool for TON transactions
-| [GetGems](https://getgems.io/top-collections/) | A marketplace for NFTs for TON network assets |
-| [re:doubt](https://redoubt.online/) | A platform for conduct TON analysis and investigations. It's an opensource prokject hosted [here](https://github.com/re-doubt)
+| [Tonviewer](https://tonviewer.com/) | Explorer by the Tonkeeper team, readable traces of transactions, jettons, NFTs and DNS |
+| [Tonscan](https://tonscan.org/) | An address lookup service, it helps to find details about a given address |
+| [Ton.sh](https://ton.sh) | An address lookup service, it helps to find details about a given address, it supports an API |
+| [Toncoin](https://explorer.toncoin.org/) | A more technical explorer, it helps to query the TON network using different key fields, workchain, shard and so on |
+| [TonAPI](https://docs.tonconsole.com/tonapi) | A platform and API useful to inspect TON addresses and any related assets, it supports anonymous numbers and NFTs |
+| [GetGems](https://getgems.io/top-collections/) | An NFT marketplace for TON network assets |
 
 ### TON Blockchain Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| [Ton known addresses](https://catchain.github.io/tonscan/src/addrbook.json) | List of known TON Addresses
+| [Tonkeeper ton-assets](https://github.com/tonkeeper/ton-assets) | Community-maintained list of known TON accounts, jettons and collections |
 
-### TON OTHER
+### TON Other
 | Link | Description |
 | --- | --- |
-| [Tonwine](https://ton.wine/) | An interactive way to pay with TON |
-| [Fragment](https://fragment.com/numbers) | Is a marketplace/ auction used to purchase number or nickname usable on the Telegram platform `https://fragment.com/username/[username]` |
-| [Ton place](https://ton.place/) | A platform for monetize from content and fanbase, dork `site:ton.place [content]` |
-| [Tonex](https://tonex.app/) | A social netowrk directly integrated on TON network
-| [TONwhale](https://tonwhales.com/it/explorer/top) | A list of top 1000 accounts 
-| [TONmeterbot](https://tonometerbot.com/) | A service used to make scores about users. The score is generated on Balance/NFTnum basis. 
-| [re:doubt](https://beta.redoubt.online/scam-abuse/#search) | A search engine for scam report related to The Open Network ecosystem 
-| [ATOP](https://github.com/aaarghhh/a_TON_of_privacy) | A tool for make investigation on TON NFTs like Telegram fake numbers, Telegram nickname, and TON domain.
-| [TON Forbes](https://tonforbes.com) | TON Forbes is an intelligent social rating of The Open Network blockchain wallets. 
+| [Fragment](https://fragment.com/numbers) | A marketplace/auction used to purchase numbers or usernames usable on Telegram `https://fragment.com/username/[username]` |
+| [Ton place](https://ton.place/) | A platform to monetize content and fanbase, dork `site:ton.place [content]` |
+| [Tonex](https://tonex.app/) | A social network directly integrated with the TON network |
+| [TONwhale](https://tonwhales.com/explorer/top) | A list of the top 1000 accounts |
+| [ATOP](https://github.com/aaarghhh/a_TON_of_privacy) | A tool for investigations on TON NFTs like Telegram anonymous numbers, Telegram usernames, and TON domains |
+| [TON Forbes](https://tonforbes.com) | TON Forbes is an intelligent social rating of The Open Network blockchain wallets |
 
 ### TON APIs
+The v1 endpoints of tonapi.io are no longer supported, the examples below use v2.
+
 | Link | Description |
 | --- | --- |
-| Get bulk info about some addresses | ```curl -X 'GET' 'https://tonapi.io/v1/account/getBulkInfo?addresses=0%3Ada6b1b6663a0e4d18cc8574ccd9db5296e367dd9324706f3bbd9eb1cd2caf0bf%2C0%3Ada6b1b6663a0e4d18cc8574ccd9db5296e367dd9324706f3bbd9eb1cd2caf0bf' -H 'accept: application/json'``` |
-| Search for a ton domain | ```curl -X 'GET' 'https://tonapi.io/v1/dns/domains/search?domain=wallet.ton' -H 'accept: application/json'``` | 
-| Search all Telegram number currently not on sale (limit 10000) | ```curl -X 'GET' 'https://tonapi.io/v1/nft/searchItems?collection=0%3A0e41dc1dc3c9067ed24248580e12b3359818d83dee0304fabcf80845eafafdb2&include_on_sale=false&limit=10000&offset=0' -H 'accept: application/json```
-| Get a backresolve of a domain | ```curl -X 'GET' 'https://tonapi.io/v1/dns/backresolve?account=0%3ABA60BFBD527C0CD2D70C6396630C50A498AF015B987ADAAD1D4A9E287F604536' -H 'accept: application/json'``` |
-| Get current bids for a domain | ```curl -X 'GET' 'https://tonapi.io/v1/auction/getBids?domain=wallet.ton' -H 'accept: application/json'``` | 
-| Retrieve data from a given NFT | ```https://ton.diamonds/api/v1/explorer/search_list``` |
+| Get bulk info about some addresses | ```curl -X POST 'https://tonapi.io/v2/accounts/_bulk' -H 'Content-Type: application/json' -d '{"account_ids":["0:da6b1b6663a0e4d18cc8574ccd9db5296e367dd9324706f3bbd9eb1cd2caf0bf"]}'``` |
+| Search for a TON domain | ```curl 'https://tonapi.io/v2/accounts/search?name=wallet.ton'``` |
+| Get domain info (owner NFT, expiration) | ```curl 'https://tonapi.io/v2/dns/wallet.ton'``` |
+| List Telegram anonymous numbers (collection items) | ```curl 'https://tonapi.io/v2/nfts/collections/0:0e41dc1dc3c9067ed24248580e12b3359818d83dee0304fabcf80845eafafdb2/items?limit=1000&offset=0'``` |
+| Get a backresolve of a domain | ```curl 'https://tonapi.io/v2/accounts/0:ba60bfbd527c0cd2d70c6396630c50a498af015b987adaad1d4a9e287f604536/dns/backresolve'``` |
+| Get current bids for a domain | ```curl 'https://tonapi.io/v2/dns/wallet.ton/bids'``` |
 
-## CCTP EXPLORERS
-| Link | description |
-| --- | --- | 
-| [Range](https://explorer.range.org/) | CCTP transactions explorer |
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## OTHER CHAINS
+| Link | Chain | Description |
+| --- | --- | --- |
+| [XRPScan](https://xrpscan.com/) | XRP Ledger | Accounts, payments, tokens and well-known account names |
+| [Bithomp](https://bithomp.com/) | XRP Ledger | Explorer with usernames, destination tags and account history |
+| [Mintscan](https://www.mintscan.io/) | Cosmos ecosystem | Explorer for Cosmos Hub and most IBC chains |
+| [Subscan](https://polkadot.subscan.io/) | Polkadot | Explorer for Polkadot, with instances for Kusama and parachains |
+| [Litecoin Space](https://litecoinspace.org/) | Litecoin | mempool.space-style explorer for Litecoin |
+| [Blockchair](https://blockchair.com/) | Many | Also covers Dogecoin, Bitcoin Cash, Litecoin, Zcash, Dash and others |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## MULTICHAIN & AML ANALYTICS
+| Link | Description |
+| --- | --- |
+| [Arkham Intelligence](https://platform.arkhamintelligence.com) 🔑 | Entity labelling, fund-flow visualizer and alerts across BTC, EVM chains, TRON, SOL and more |
+| [MistTrack](https://misttrack.io/) 🔑 | SlowMist AML platform: risk scoring, labels (exchanges, mixers, hackers) and fund-flow graphs |
+| [Nansen](https://www.nansen.ai/) 💰🔑 | Large wallet label database ("Smart Money", funds, exchanges) for EVM chains and Solana |
+| [Metasleuth](https://metasleuth.io/) | BlockSec fund-flow tracing across BTC, EVM chains and TRON |
+| [Breadcrumbs.app](https://www.breadcrumbs.app/) 🔑 | Investigation graphs with sanctioned address data |
+| [Crystal Lite](https://lite.crystalintelligence.com/) | Free tier of Crystal Intelligence |
+| [TRM](https://www.trmlabs.com/) 💰 | Enterprise blockchain intelligence and forensics |
+| [OKLink](https://www.oklink.com/) | Multichain explorer with address labels |
+| [3xpl.com](https://3xpl.com/) | Universal explorer for 40+ chains with a common API |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## BRIDGES & CCTP
+| Link | Description |
+| --- | --- |
+| [Range](https://explorer.range.org/) | CCTP (Circle USDC) transactions explorer |
+| [Wormholescan](https://wormholescan.io/) | Wormhole bridge transfers and messages explorer |
+| [LayerZero Scan](https://layerzeroscan.com/) | LayerZero cross-chain messages explorer (Stargate and other OFT bridges) |
+| [Socketscan](https://www.socketscan.io/) | Explorer for bridges aggregated by Socket / Bungee |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## SANCTIONS, HACKS & PHISHING
+| Link | Description |
+| --- | --- |
+| [OFAC Sanctions List Search](https://sanctionssearch.ofac.treas.gov/) | Official US Treasury SDN search, includes listed crypto addresses |
+| [OpenSanctions](https://www.opensanctions.org/) | Open database of sanctioned entities and PEPs, includes crypto wallet identifiers |
+| [SlowMist Hacked](https://hacked.slowmist.io/) | Database of blockchain hacks and incidents with dates, amounts and attack types |
+| [Rekt Leaderboard](https://rekt.news/leaderboard/) | Biggest DeFi exploits with post-mortems |
+| [DefiLlama Hacks](https://defillama.com/hacks) | Hacks database with amounts, techniques and chains |
+| [eth-phishing-detect](https://github.com/MetaMask/eth-phishing-detect) | MetaMask's list of known phishing domains |
+| [Chainabuse](https://www.chainabuse.com/) | Community scam and hack reports for addresses and domains |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## NAME SERVICES
+| Link | Description |
+| --- | --- |
+| [ENS Domains](https://app.ens.domains/) | `.eth` names: owner, resolver, records and history |
+| [Unstoppable Domains](https://unstoppabledomains.com/) | `.crypto`, `.x`, `.nft` and other names, search shows linked addresses |
+| [SNS](https://www.sns.id/) | Solana Name Service (`.sol`) |
+| [TON DNS via TonAPI](#ton-apis) | `.ton` and `.t.me` names, see the TON API examples |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## SMARTCONTRACTS
 | Tool | Description |
 | --- | --- |
-|[PALKEO](https://oko.palkeo.com/) | An Ethereum explorer focused on smart contracts |
-|[Ethereum Signature Database](https://www.4byte.directory/) | A database containing the bytes related to functions used in Database  |
-|[Grep.app](https://grep.app/search?q=solidity) | Search for smartcontract source code. It could be useful for search for nft or contract sourcecode |
-|[EIS3](https://github.com/salaheldinaz/EIS3) | A ENS domain (.eth domain) analyzer 
-|[Dune](https://dune.com/browse/dashboards) | A community driven dashboards collection, useful for exploring ETH, TOKENS and NFT | 
+| [Phalcon Explorer](https://blocksec.com/phalcon/explorer) | BlockSec transaction explorer: invocation flow, fund flow and balance changes, great for exploit analysis |
+| [Tenderly Explorer](https://dashboard.tenderly.co/explorer) 🔑 | Transaction debugger and simulator for EVM chains |
+| [Ethereum Signature Database](https://www.4byte.directory/) | A database mapping 4-byte function selectors to function signatures |
+| [Grep.app](https://grep.app/search?q=solidity) | Search for smart contract source code. It could be useful to search for NFT or contract source code |
+| [EIS3](https://github.com/salaheldinaz/EIS3) | An ENS domain (.eth domain) analyzer |
+| [Dune](https://dune.com/browse/dashboards) 🔑 | A community-driven dashboards collection, useful for exploring ETH, tokens and NFTs | 
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## DEFI
-|[Sonar.watch](https://sonar.watch) | A multichain dashboard / explorer |
+| Tool | Description |
+| --- | --- |
+| [DefiLlama](https://defillama.com/) | TVL, protocol, bridge and stablecoin analytics across chains |
+| [Debank](https://debank.com/) | A WEB3 portfolio tracker and messenger |
+| [Zapper](https://zapper.xyz/) | A multichain WEB3 explorer. It allows you to search and monitor different kinds of assets like tokens, NFTs etc. |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## NFT
 | Tool | Description |
 | --- | --- |
-| [Opensea](https://opensea.io/) | The first and more relevant NFTmarketplace, it also supports ENS name, accounts could be explorer using this pattern: https://opensea.io/[nickname]  |
+| [Opensea](https://opensea.io/) | The first and most relevant NFT marketplace, it also supports ENS names, accounts can be explored using this pattern: https://opensea.io/[nickname] |
 | [Binance NFT](https://www.binance.com/en/nft/) | NFT marketplace directly managed by Binance |
-| [Rarible](https://rarible.com/) | Another NFT marketplace, it supports ETH, SOL, Thezos and Polygon |
-| [Coinbase](https://nft.coinbase.com/) | NFT marketplace directly managed by Coinbase |
-| [Crypto.com](https://crypto.com/nft)|  NFT marketplace directly managed by Crypto.com |
-| [NFT Calendar](https://nftcalendar.io/) | A Calendar for NFT project, it doesn't require any author validation |
-| [Luckyblock](https://nft.luckyblock.com/explore/collections) | NFT explorer for NFT minted on the BNB network |
-| [Nftsearch](https://nftsearch.site/) | A reverse search for finding NFT, it supports images, address and so on |
-| [NFTfinder](https://www.nyckel.com/nft-finder/) | A reverse search for finding NFT, it supports images, address and so on | 
-| [Compass](https://compass.art/pulse) | An explorer which help to understand statistics about NFTs |
-| [Context.app](https://context.app) | An NFT explorer mainly related to owners, it should synk Twitter followers to their address or ENS name |
-| [NFT Analyst Starter Pack](https://github.com/a16z/nft-analyst-starter-pack) | USing alchemy API key, it can generate CSV extracts for all token transfers, historical sales, and each underlying item's metadata |
-| [Nftfreeviewer](https://www.freenftviewer.io/) | An NFTs epxlorer that supports ETH and Polygon netowrk |
-| [Tonnft](https://explorer.tonnft.tools/) | A marketplce and explorer for TON nft |
-| [GetGems](https://getgems.io/top-collections/) | Another marketplace for NFTs for TON network assets |
-| [Disintar](https://beta.disintar.io/) | A marketplace for NFTs based on TON netowrk, there is also a collection related to Telegram names |
-| [NFTGO.io](https://nftgo.io/) | Discover, analyze, and trade NFTs faster and smarter than anyone else, aided by in-depth analytics and intelligent toolkits. |
-| [NFT scan](https://www.nftscan.com/) | An nft explorer which supports different blockchain like Ethereum, Binance, Polygon, Solana and others
-| [Dune](https://dune.com/browse/dashboards) | A community driven dashboards collection, useful for exploring ETH, TOKENS and NFT | 
-| [ZORA](https://zora.co/collect/eth:0x054460490780a6eb15625d703db1754e0b78d846) |  A platform for minting NFT, it let you explore useful information on some MINT statistics
+| [Rarible](https://rarible.com/) | Another NFT marketplace, it supports ETH, SOL, Tezos and Polygon |
+| [Crypto.com](https://crypto.com/nft) | NFT marketplace directly managed by Crypto.com |
+| [NFT Calendar](https://nftcalendar.io/) | A calendar for NFT projects, it doesn't require any author validation |
+| [NFTfinder](https://www.nyckel.com/nft-finder/) | A reverse search for finding NFTs, it supports images, addresses and so on | 
+| [Compass](https://compass.art/pulse) | An explorer which helps to understand statistics about NFTs |
+| [NFT Analyst Starter Pack](https://github.com/a16z/nft-analyst-starter-pack) | Using an Alchemy API key, it can generate CSV extracts for all token transfers, historical sales, and each underlying item's metadata |
+| [GetGems](https://getgems.io/top-collections/) | Another NFT marketplace for TON network assets |
+| [NFTGO.io](https://nftgo.io/) | Discover, analyze, and trade NFTs, aided by in-depth analytics and toolkits |
+| [NFT scan](https://www.nftscan.com/) | An NFT explorer which supports different blockchains like Ethereum, BNB Chain, Polygon, Solana and others |
+| [Dune](https://dune.com/browse/dashboards) 🔑 | A community-driven dashboards collection, useful for exploring ETH, tokens and NFTs | 
+| [ZORA](https://zora.co/collect/eth:0x054460490780a6eb15625d703db1754e0b78d846) | A platform for minting NFTs, it lets you explore useful mint statistics |
 
 ### NFT Databases and Analyzers
 | Link | Description |
 | --- | --- |
-| [Scamsniffer](https://explorer.scamsniffer.io/?sort=30DayVolume) | A full solution to track NFT scammer, it also supports a Browser extension and a Discord bot |
+| [Scamsniffer](https://explorer.scamsniffer.io/?sort=30DayVolume) | A full solution to track NFT scammers, it also supports a browser extension and a Discord bot |
 
 ### NFT API
 | Tool | Description | API CALL |
 | --- | --- | --- |
-| [Alchemy API](https://www.alchemy.com/nft-api) | Help to navigate ETH and other chain data via API | `import { Alchemy } from "alchemy-sdk";Alchemy().nft.getNftsForOwner("0xshah.eth").then(console.log);` |
+| [Alchemy API](https://www.alchemy.com/nft-api) | Helps to navigate ETH and other chain data via API | `import { Alchemy } from "alchemy-sdk";new Alchemy().nft.getNftsForOwner("0xshah.eth").then(console.log);` |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## IPFS
 | Tool | Description |
 | --- | --- |
-| `ipfs dht findprovs <hash-of-file>` | returns IDs of all nodes having the file |
-| `ipfs dht findpeer <nodeID>` | returns the list of node addresses (IP v4 and v6, TCP and UDP) |
-| [IPFS scanner](https://github.com/cryptodashie/ipfs/tree/fda709851b21d9ef82eb246da6f96667f14f3ae8)| IPFS scanning can identify new hosted content or expose information leaks similar to Amazon S3 buckets.  | 
-| [IPFS browser](https://ipfsbrowser.com/) | Search, view, access, and download IPFS files quickly and easily right in your web browser from any device! |
+| `ipfs routing findprovs <cid>` | Returns the IDs of all nodes having the file (formerly `ipfs dht findprovs`) |
+| `ipfs routing findpeer <nodeID>` | Returns the list of node addresses (IPv4 and IPv6, TCP and UDP) (formerly `ipfs dht findpeer`) |
+| [IPFS scanner](https://github.com/cryptodashie/ipfs/tree/fda709851b21d9ef82eb246da6f96667f14f3ae8) | IPFS scanning can identify newly hosted content or expose information leaks similar to Amazon S3 buckets | 
+| [IPFS browser](https://ipfsbrowser.com/) | Search, view, access, and download IPFS files right in your web browser from any device |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## METAVERSE - WEB3
 | LINK | Description |
 | --- | --- |
-| [Spatial](https://www.spatial.io) | An example of Metaverse, it contains different spaces where people can connect with. `https://www.spatial.io/@[USERNAME]`   |
-| [Debank](https://debank.com/) | A WEB3 messanger and Portfolio 
-| [Zapper](https://zapper.xyz/) | A multachain, WEB3 explorer. It allows search and monitor different kind of assets like TOKEN, NFT etc.
-| [Scamsniffer](https://www.scamsniffer.io/extension/) | A chrome extension aimed to block and detect scams and ragpull during the WEB3 surfing  |
+| [Spatial](https://www.spatial.io) | An example of a Metaverse, it contains different spaces where people can connect. `https://www.spatial.io/@[USERNAME]` |
+| [Scamsniffer](https://www.scamsniffer.io/extension/) | A browser extension aimed at blocking and detecting scams and rug pulls while surfing WEB3 |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## DORK
 | Dork | Description |
 | --- | --- |
-| `[ADDRESS] -block` | Identify information related to the address but not indexed by common search engines  |
-| `site:[url of interest] [ADDRESS]` | help to find information about an address on a target url of interest |
-| `(antminer) AND protocols.raw: “80/http” AND 80.http.get.title: “401”` | (Shodan) dork for antminer |
-| `ETH - Total Speed` | (Shodan) Claymore Miner Software |
+| `"[ADDRESS]" -block` | Find pages mentioning the address while filtering out block explorer noise |
+| `site:[url of interest] "[ADDRESS]"` | Helps to find information about an address on a target url of interest |
+| `"antminer" http.title:"401"` | (Shodan) dork for exposed Antminer devices |
+| `"ETH - Total Speed"` | (Shodan) Claymore Miner Software |
 
-## NOTABLE ACCOUNT TO FOLLOW
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## NOTABLE ACCOUNTS TO FOLLOW
 | Account | Description |
 | --- | --- |
-| [CIA_Officer](https://twitter.com/officer_cia) | Independent Security Researcher • Not the CIA • OpSec & Privacy Guru • On-Chain & OSINT Sleuth
-| [Rugpullfinder-(Inactive)](https://twitter.com/rugpullfinder) | The NFT community's premier source of information |
-| [ZachXBT](https://twitter.com/zachxbt) | On-chain sleuth. Rug pull survivor turned 2D detective 
+| [CIA_Officer](https://x.com/officer_cia) | Independent Security Researcher • Not the CIA • OpSec & Privacy Guru • On-Chain & OSINT Sleuth |
+| [Rugpullfinder (Inactive)](https://x.com/rugpullfinder) | The NFT community's premier source of information |
+| [ZachXBT](https://x.com/zachxbt) | On-chain sleuth. Rug pull survivor turned 2D detective |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
 
 ## TOOLS
 | Tool | Description |
 | --- | --- |
-| [Obsidian templates Cryptocurrencies](https://github.com/theNerdInTheHighCastle/obsidian-osint-templates/blob/main/--%20templates/crypto-address.md) | An Obisidian template for Cryptocurrencies investigations  |
-| [Obsidian templates NFT](https://github.com/theNerdInTheHighCastle/obsidian-osint-templates/blob/main/--%20templates/NFT.md)| An Obisidian template for NFT investigations  |
-| [Eth Explorers Extension](https://github.com/apoorvlathey/eth-explorers-extension) | Browser extension to open Ethereum addresses & transaction hash from any page on popular explorers + dashboards |
-| [Maltego](https://www.maltego.com/)| Maltego directly support BTC and ETH address entities. It is a tool used for OSINT and Forensic investigations   |
-| [Tatum Blockchain Explorer (Maltego Transofrm)](https://www.maltego.com/) | Tatum is a blockchain development platform that supports over 40 blockchain protocols and 2000 + digital assets.   |
-| [Opensanctions (Maltego Transofrm)](https://www.maltego.com/) | A transform for Maltego, it queries sanctioned address from opensaction database |
-| [Cyphertrace Explorer (Maltego Transform)](https://www.maltego.com/) | The Cypertrace' transform for Maltego 
+| [Obsidian template: crypto investigation report](https://github.com/theNerdInTheHighCastle/obsidian-osint-templates/blob/main/--%20templates/Cryptocurrency%20Investigation%20Findings%20Report.md) | An Obsidian template for cryptocurrency investigations |
+| [Obsidian templates NFT](https://github.com/theNerdInTheHighCastle/obsidian-osint-templates/blob/main/--%20templates/NFT.md) | An Obsidian template for NFT investigations |
+| [Eth Explorers Extension](https://github.com/apoorvlathey/eth-explorers-extension) | Browser extension to open Ethereum addresses & transaction hashes from any page on popular explorers + dashboards |
+| [Maltego](https://www.maltego.com/) 💰 | Maltego directly supports BTC and ETH address entities. It is a tool used for OSINT and forensic investigations |
+| [Tatum Blockchain Explorer (Maltego Transform)](https://www.maltego.com/) | Tatum is a blockchain development platform that supports over 40 blockchain protocols and 2000+ digital assets |
+| [Opensanctions (Maltego Transform)](https://www.maltego.com/) | A transform for Maltego, it queries sanctioned addresses from the OpenSanctions database |
 | [EMER name (Maltego Transform)](https://github.com/Tomasuh/Maltego_Transform_Blockchain_DNS/tree/63e6fb152a75893103ec038b9974db937ba21baa) | Useful transform to resolve EMER domain names |
-| [Mugetsu](https://t.me/the_mugetsu_bot) | (Correlation from X, handle,  identify wallet, tradinjg analysis and wallet explorer 
-| [Impersonator](https://chromewebstore.google.com/detail/impersonator/hgihfkmoibhccfdohjdbklmmcknjjmgl) | Spoof ETH address for authenticating in Dapps
+| [Mugetsu](https://t.me/the_mugetsu_bot) | Correlation from X handles, wallet identification, trading analysis and wallet explorer |
+| [Impersonator](https://chromewebstore.google.com/detail/impersonator/hgihfkmoibhccfdohjdbklmmcknjjmgl) | Spoof an ETH address for authenticating in dApps |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## CONTRIBUTING
+Found a dead link or a tool that should be here? Open an issue or a pull request. Please keep one resource per row, say what it does in one sentence and mark it with 💰 / 🔑 / ⚠️ when it applies.
