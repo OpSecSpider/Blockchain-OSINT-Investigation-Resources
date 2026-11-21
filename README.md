@@ -25,7 +25,7 @@
 | [🔵 Cardano](#cardano---ada) | [🛡️ OPSEC](#crypto-opsec-methodologies-and-info) | [🕶️ Metaverse](#metaverse---web3) |
 | [🟣 Solana](#solana---sol) | [🔎 Dorks](#dork) | [🧰 Tools](#tools) |
 | [💎 TON](#toncoin---ton) | [👤 Accounts to follow](#notable-accounts-to-follow) | [🤝 Contributing](#contributing) |
-| [🪙 Other chains](#other-chains) | | |
+| [🪙 Other chains](#other-chains) | [🕵️ Off-chain pivots](#off-chain-pivots) | [📚 Learning](#learning) |
 
 Each chain section has the same structure: **Address Regex → Explorers → Databases and Analyzers → API → Other**.
 
@@ -105,6 +105,7 @@ Each chain section has the same structure: **Address Regex → Explorers → Dat
 | [Aware Online](https://www.aware-online.com/en/osint-tools/cryptocurrency-search-tool/) | Different tools to conduct OSINT investigations on given BTC addresses |
 | [GraphSense Maltego Transform](https://github.com/INTERPOL-Innovation-Centre/GraphSense-Maltego-transform) | A Maltego transform which leverages GraphSense for crypto investigations |
 | [Paxful](https://paxful.com/user/XXX) | A P2P exchange that, starting from a given nickname, lets you explore users and info related to them |
+| [Bitcoin prefixes address list](https://github.com/citizen010/bitcoin-prefixes-address-list) | Lists of Bitcoin addresses grouped by prefix, handy to validate or recognize address formats |
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
 
@@ -158,6 +159,9 @@ Funds rarely stay on Ethereum mainnet. The same `0x` address can be checked on e
 | [Cryptoscamdb](https://cryptoscamdb.org/scams) | A scam database which contains information about scam sites and related addresses |
 | [SPLcenter Addresslist](https://www.splcenter.org/cryptocurrency-report) | A spreadsheet containing information about addresses used by extremists and far-right communities |
 | [Walletlabels](https://www.walletlabels.xyz/) | Search engine based on a collection of more than 7.5M labeled ETH addresses | 
+| [RektRadar](https://rektradar.io/) | Ethereum scam detector: mempool monitoring, deployer-graph clustering, 80+ on-chain flags per contract, groups scams by common funder |
+| [etherscan-labels](https://github.com/brianleect/etherscan-labels) | Full dump of Etherscan labels in JSON / CSV (includes the phish-hack list) |
+| [RolodETH](https://github.com/verynifty/RolodETH) | Open-source Ethereum address tag database |
 | [Dune](https://dune.com/browse/dashboards) 🔑 | A community-driven dashboards collection, useful for exploring ETH, tokens and NFTs | 
 
 ### ETH Other
@@ -173,6 +177,9 @@ Funds rarely stay on Ethereum mainnet. The same `0x` address can be checked on e
 | [Demixing Tornado cash bot](https://flipsidecrypto.xyz/AMLBot/demixin-eth-for-tornadocash-JCcIiS) | Tool for demixing transactions made using Tornado Cash (updated weekly) |
 | [Paxful](https://paxful.com/user/XXX) | A P2P exchange that, starting from a given nickname, lets you explore users and info related to them |
 | [Cielo](https://app.cielo.finance/) | A tool for tracking and monitoring EVM wallets |
+| [Swiss-Knife Explorer](https://explorer.swiss-knife.xyz/) | Decodes EVM transactions and calldata in a readable way |
+| [rolod0x](https://rolod0x.io/) | Private open-source address book extension: shows your own labels for addresses on any site and chain |
+| [MetaSuites](https://github.com/blocksecteam/metasuites) | BlockSec browser extension (formerly MetaDock) that adds labels, fund-flow and tx tools to explorers |
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
 
@@ -348,6 +355,13 @@ The v1 endpoints of tonapi.io are no longer supported, the examples below use v2
 | [TRM](https://www.trmlabs.com/) 💰 | Enterprise blockchain intelligence and forensics |
 | [OKLink](https://www.oklink.com/) | Multichain explorer with address labels |
 | [3xpl.com](https://3xpl.com/) | Universal explorer for 40+ chains with a common API |
+| [Bluepages](https://bluepages.fyi/) | Links social accounts (X / Farcaster) to crypto addresses and back, great for pivoting from an address to a persona |
+| [OnChainRisk](https://onchainrisk.io/) | Multichain wallet analysis, risk scoring and fund-flow tracing |
+| [AMLBot](https://amlbot.com/) 💰 | AML address checks and investigation service, popular for TRON / USDT |
+| [Scorechain](https://www.scorechain.com/) 💰 | Blockchain analytics and AML risk scoring for compliance teams |
+| [Elliptic](https://www.elliptic.co/) 💰 | Enterprise blockchain analytics and investigations (Elliptic Investigator) |
+| [Chainalysis Reactor](https://reactor.chainalysis.com/) 💰🔑 | Chainalysis investigation software used by law enforcement |
+| [Bubblemaps](https://bubblemaps.io/) | Visualizes token holder clusters, useful to spot insiders and related wallets behind a token |
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
 
@@ -369,6 +383,9 @@ The v1 endpoints of tonapi.io are no longer supported, the examples below use v2
 | [SlowMist Hacked](https://hacked.slowmist.io/) | Database of blockchain hacks and incidents with dates, amounts and attack types |
 | [Rekt Leaderboard](https://rekt.news/leaderboard/) | Biggest DeFi exploits with post-mortems |
 | [DefiLlama Hacks](https://defillama.com/hacks) | Hacks database with amounts, techniques and chains |
+| [Solodit](https://solodit.xyz/) | Searchable database of audit findings and exploits |
+| [ChainSec DeFi Hacks](https://www.chainsec.io/defi-hacks) | List of DeFi hacks with links to analyses |
+| [BlockThreat](https://blockthreat.com/) | Weekly newsletter on hacks, scams and threat intel in crypto |
 | [eth-phishing-detect](https://github.com/MetaMask/eth-phishing-detect) | MetaMask's list of known phishing domains |
 | [Chainabuse](https://www.chainabuse.com/) | Community scam and hack reports for addresses and domains |
 
@@ -384,6 +401,18 @@ The v1 endpoints of tonapi.io are no longer supported, the examples below use v2
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
 
+## OFF-CHAIN PIVOTS
+Once an address is linked to a name or a company, these sources help to continue the investigation off-chain.
+
+| Link | Description |
+| --- | --- |
+| [ICIJ Offshore Leaks](https://offshoreleaks.icij.org/) | Panama / Pandora / Paradise Papers entities, officers and intermediaries |
+| [OCCRP Aleph](https://aleph.occrp.org/) 🔑 | Company registries, leaks and court records from OCCRP |
+| [LeakIX](https://leakix.net/) | Exposed services and leaks search, useful for crypto infrastructure (nodes, wallets, panels) |
+| [hunter.how](https://hunter.how/) | Internet-wide asset search engine, an alternative to Shodan / CriminalIP |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
 ## SMARTCONTRACTS
 | Tool | Description |
 | --- | --- |
@@ -392,6 +421,12 @@ The v1 endpoints of tonapi.io are no longer supported, the examples below use v2
 | [Ethereum Signature Database](https://www.4byte.directory/) | A database mapping 4-byte function selectors to function signatures |
 | [Grep.app](https://grep.app/search?q=solidity) | Search for smart contract source code. It could be useful to search for NFT or contract source code |
 | [EIS3](https://github.com/salaheldinaz/EIS3) | An ENS domain (.eth domain) analyzer |
+| [heimdall-rs](https://github.com/Jon-Becker/heimdall-rs) | EVM bytecode decompiler and toolkit, works on unverified contracts |
+| [whatsABI](https://github.com/shazow/whatsabi) | Recovers function selectors and ABI from unverified contract bytecode |
+| [Dedaub Library](https://library.dedaub.com/) | Decompiled and verified contracts search across EVM chains |
+| [Otterscan](https://github.com/otterscan/otterscan) | Fast local block explorer on top of your own Erigon / Reth node, no third party sees your queries |
+| [De.Fi Scanner](https://de.fi/scanner) | Smart contract risk scanner (honeypots, owner privileges, proxy) |
+| [revoke.cash](https://revoke.cash/) | Shows token approvals of an address, useful to understand drainer victims |
 | [Dune](https://dune.com/browse/dashboards) 🔑 | A community-driven dashboards collection, useful for exploring ETH, tokens and NFTs | 
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
@@ -468,6 +503,12 @@ The v1 endpoints of tonapi.io are no longer supported, the examples below use v2
 | [CIA_Officer](https://x.com/officer_cia) | Independent Security Researcher • Not the CIA • OpSec & Privacy Guru • On-Chain & OSINT Sleuth |
 | [Rugpullfinder (Inactive)](https://x.com/rugpullfinder) | The NFT community's premier source of information |
 | [ZachXBT](https://x.com/zachxbt) | On-chain sleuth. Rug pull survivor turned 2D detective |
+| [ZachXBT investigations](https://zachxbt.mirror.xyz/) | Long-form investigations by ZachXBT on Mirror |
+| [PeckShieldAlert](https://x.com/PeckShieldAlert) | Real-time alerts on hacks, exploits and stolen funds movements |
+| [BlockSecTeam](https://x.com/BlockSecTeam) | Exploit analyses and attack alerts from BlockSec (Phalcon, MetaSleuth) |
+| [CertiKAlert](https://x.com/CertiKAlert) | Alerts on exploits, rug pulls and phishing |
+| [MistTrack_io](https://x.com/MistTrack_io) | SlowMist's AML team: fund tracing of hacks and scams |
+| [Lookonchain](https://x.com/lookonchain) | Whale and fund movements tracking |
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
 
@@ -483,6 +524,16 @@ The v1 endpoints of tonapi.io are no longer supported, the examples below use v2
 | [EMER name (Maltego Transform)](https://github.com/Tomasuh/Maltego_Transform_Blockchain_DNS/tree/63e6fb152a75893103ec038b9974db937ba21baa) | Useful transform to resolve EMER domain names |
 | [Mugetsu](https://t.me/the_mugetsu_bot) | Correlation from X handles, wallet identification, trading analysis and wallet explorer |
 | [Impersonator](https://chromewebstore.google.com/detail/impersonator/hgihfkmoibhccfdohjdbklmmcknjjmgl) | Spoof an ETH address for authenticating in dApps |
+| [INTERPOL Hardware Wallets List](https://github.com/INTERPOL-Innovation-Centre/HardwareWallets_DF_List) | Hardware wallets catalogue with photos, to recognize devices during searches and seizures |
+| [Chainlist](https://chainlist.org/) | Chain IDs and RPC endpoints for every EVM network |
+
+<sub>[⬆ back to top](#table-of-contents)</sub>
+
+## LEARNING
+| Link | Description |
+| --- | --- |
+| [Basel Institute eLearning](https://learn.baselgovernance.org/) | Free courses on crypto investigations, asset recovery and AML for law enforcement and compliance |
+| [On-Chain Investigations Tools List](https://github.com/OffcierCia/On-Chain-Investigations-Tools-List) | Huge link collection by officercia, several entries above come from it |
 
 <sub>[⬆ back to top](#table-of-contents)</sub>
 
